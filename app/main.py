@@ -29,6 +29,13 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
+    from app.routers import employees, contracts, payroll, analytics
+
+    app.include_router(employees.router, prefix=settings.API_PREFIX)
+    app.include_router(contracts.router, prefix=settings.API_PREFIX)
+    app.include_router(payroll.router, prefix=settings.API_PREFIX)
+    app.include_router(analytics.router, prefix=settings.API_PREFIX)
+
     @app.get("/health", tags=["health"])
     def health():
         return {"status": "ok"}
