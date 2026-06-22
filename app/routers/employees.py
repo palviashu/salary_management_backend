@@ -91,3 +91,8 @@ def update_employee(
 @router.delete("/{employee_id}", status_code=status.HTTP_204_NO_CONTENT)
 def deactivate_employee(employee_id: int, svc: EmployeeService = Depends(_get_service)):
     svc.deactivate(employee_id)
+
+
+@router.delete("/{employee_id}/permanent", status_code=status.HTTP_204_NO_CONTENT)
+def delete_employee_permanently(employee_id: int, svc: EmployeeService = Depends(_get_service)):
+    svc.delete(employee_id)
